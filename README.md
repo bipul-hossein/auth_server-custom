@@ -1,53 +1,61 @@
-# Auth_server-custom
+# Next.Js-Custom-Auth-Server
 
-The authentication process for a dedicated server site with Express.js and Mongoose involves user registration, where credentials are securely hashed and stored in MongoDB. Users log in via Express routes, with authentication middleware verifying credentials. Sessions are managed using express-session, while access control middleware protects routes. Optionally, JSON Web Tokens enhance security. Password recovery routes facilitate resetting passwords. Additional security measures like rate limiting and HTTPS are implemented. Logout routes end user sessions. Comprehensive error handling ensures smooth operation. Continuous testing and updates maintain security.
+## Installation:
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Authentication](#authentication)
-- [Contributing](#contributing)
-- [License](#license)
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Rename `.env.example` to `.env`.
+4. Run the server using `npm run dev`.
 
-## Introduction
+## Configuration:
 
-Explain what the project is about and its purpose briefly.
+- Environment Variables:
+  - `PORT`: Port number the server listens on. Default: 3000
+  - `MONGODB_URI`: URI for MongoDB database.
+  - `JWT_SECRET`: Secret key for JWT token generation.
+  - `EXPIRES_IN`: Token expiration time.
 
-## Features
+## Usage:
 
-1. User Registration:
-Users sign up, providing information like username, email, and password. This data is encrypted and stored in MongoDB via Mongoose.
+- API Endpoints:
 
-2. Login Process:
-Users log in through a designated route. Express.js handles the authentication process, verifying credentials against stored data.
+  - POST `/api/auth/login`
 
-3. JWT Implementation:
-JSON Web Tokens (JWT) can be utilized for stateless authentication, enhancing security and scalability.
+    - Description: Authenticates user and returns a JWT token.
+    - Request:
+      ```json
+      {
+        "email": "example@email.com",
+        "password": "password"
+      }
+      ```
+    - Response:
+      ```json
+      {
+        "success": true,
+        "message": "User registered successfully"
+      }
+      ```
 
-4. Password Recovery:
-Forgot password functionality allows users to reset passwords securely, typically involving email verification.
+  - POST `/api/auth/register`
+    - Description: Registers a new user.
+    - Request:
+      ```json
+      {
+        "name": "John",
+        "email": "example@email.com",
+        "password": "password"
+      }
+      ```
 
-5. Security Measures:
-Implement best practices like HTTPS, rate limiting, and input validation to mitigate common security risks.
+## Dependencies:
 
-6. Logout Functionality:
-Users can securely log out, terminating their session to prevent unauthorized access.
+- `bcrypt`: Library for hashing passwords.
+- `cors`: Express middleware for enabling CORS.
+- `dotenv`: Loads environment variables from .env file.
+- `express`: Web framework for Node.js.
+- `jsonwebtoken`: Library for generating and verifying JWT tokens.
+- `mongodb`: MongoDB driver for Node.js.
+- `nodemon`: Utility for automatically restarting the server during development.
 
-7. Error Handling:
-Implement robust error handling to provide informative responses and ensure system stability.
 
-Continuous Updates:
-Regularly update dependencies and security measures to stay resilient against evolving threats.
-- ...
-
-## Technologies Used
-
-- [Express.js](https://expressjs.com/): Web application framework for Node.js
-- [Mongoose](https://mongoosejs.com/): MongoDB object modeling tool
-- [bcrypt](https://www.npmjs.com/package/bcrypt): Password hashing library
-- [express-session](https://www.npmjs.com/package/express-session): Session middleware for Express
-- [JSON Web Tokens (JWT)](https://jwt.io/): Optional for stateless authentication
-- ...
